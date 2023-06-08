@@ -1,12 +1,12 @@
-Ways to achieve 99.4% validation accuracy on MNIST dataset using less than 20k parameters.
+****Ways to achieve 99.4% validation accuracy on MNIST dataset using less than 20k parameters in under 20 epochs****
 
 To keep parameters under 20k, we need to start with very low number of channels initially.
-I am using pyramidal structure- keeping 2-3 layer having same number of channel
+I am using `pyramidal structure`- keeping 2-3 layer having same number of channel
 For transition, I have used 1x1 and Maxpooling
-After each Conv, I am using BatchNorm then ReLU then Dropout,dropout is used only in couple of layer though.
+`After each Conv, I am using BatchNorm then ReLU then Dropout`,dropout is used only in couple of layer though.
 By applying ReLU before Dropout, the Dropout layer can work on the activations produced by ReLU. This ensures that the Dropout process is applied to the activated and meaningful features rather than directly to the raw inputs or unactivated values. Applying Dropout before ReLU may hinder the ReLU activation from fully utilizing the available information and could potentially reduce the model's representational capacity.
 
-I am starting at 0.01 LR, and using scheduler, reducing it by 0.4x every 5 epochs. This will ensure that as reach closer to optimal value, we take smaller steps.
+I am starting at 0.01 LR, and using `scheduler`, reducing it by 0.4x every 5 epochs. This will ensure that as reach closer to optimal value, we take smaller steps.
 
 
 Regarding data transformations:
